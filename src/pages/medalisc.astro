@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MedalBadge from '../components/MedalBadge.astro';
+import AchievementCard from '../components/AchievementCard.astro';
+
+const topAthletes = [
+  { rank: 1, name: "Zawodnik 1", total: 53, gold: 24, silver: 19, bronze: 10, disciplines: "triathlon/duathlon/aquathlon" },
+  { rank: 2, name: "Zawodnik 2", total: 37, gold: 25, silver: 7, bronze: 5, disciplines: "triathlon/duathlon/aquathlon" },
+  { rank: 3, name: "Zawodnik 3", total: 28, gold: 15, silver: 11, bronze: 2, disciplines: "triathlon/duathlon" },
+  { rank: 4, name: "Zawodniczka 4", total: 26, gold: 16, silver: 6, bronze: 4, disciplines: "triathlon/duathlon" },
+  { rank: 5, name: "Zawodnik 5", total: 25, gold: 8, silver: 9, bronze: 8, disciplines: "triathlon/duathlon/aquathlon" },
+  { rank: 6, name: "Zawodniczka 6", total: 19, gold: 9, silver: 3, bronze: 7, disciplines: "triathlon/duathlon/aquathlon" },
+  { rank: 7, name: "Zawodniczka 7", total: 14, gold: 4, silver: 8, bronze: 2, disciplines: "triathlon/duathlon" },
+  { rank: 8, name: "Zawodniczka 8", total: 12, gold: 4, silver: 6, bronze: 2, disciplines: "triathlon/duathlon/aquathlon" },
+  { rank: 9, name: "Zawodnik 9", total: 9, gold: 3, silver: 1, bronze: 5, disciplines: "duathlon" },
+  { rank: 10, name: "Zawodnik 10", total: 9, gold: 1, silver: 5, bronze: 3, disciplines: "triathlon/duathlon" },
+];
+
+const recentMedals = [
+  { year: "2013", player: "Zawodnik 11", medal: "Złoto", category: "U23", discipline: "duathlon MTB", place: "Dzierżoniów" },
+  { year: "2013", player: "Zawodnik 12", medal: "Brąz", category: "U23", discipline: "duathlon MTB", place: "Dzierżoniów" },
+  { year: "2013", player: "Zawodnik 14", medal: "Srebro", category: "junior", discipline: "duathlon MTB", place: "Dzierżoniów" },
+  { year: "2013", player: "Zawodnik 18", medal: "Brąz", category: "junior", discipline: "duathlon MTB", place: "Dzierżoniów" },
+  { year: "2013", player: "Zawodniczka 19", medal: "Brąz", category: "juniorka młodsza", discipline: "aquathlon MTB", place: "Gdynia" },
+];
+
+const teamAchievements = [
+    { title: "DRUŻYNOWE AKADEMICKIE MISTRZOSTWA ŚWIATA", team: "Zawodnik 1, Zawodnik 2, Zawodnik 20", result: "Brąz", disc: "triathlon" },
+    { title: "MISTRZOSTWA EUROPY SZTAFET", team: "Zawodnik 3, Zawodnik 21, Zawodnik 22", result: "Srebro", disc: "duathlon" },
+];
+---
+
+<BaseLayout title="Medaliści - TS Akwedukt">
+  <section class="relative py-24 bg-slate-950 text-white overflow-hidden">
+    <div class="container mx-auto px-4 text-center relative z-10">
+      <span class="text-blue-500 font-bold uppercase tracking-[0.3em] text-xs mb-6 block">Hall of Fame</span>
+      <h1 class="text-6xl md:text-9xl font-black leading-[0.8] uppercase tracking-tighter mb-8 italic">
+        Nasze <span class="text-blue-600">Medale.</span>
+      </h1>
+      <p class="max-w-2xl mx-auto text-xl text-slate-400 font-medium">Historia sukcesu pisana potem od 1995 roku.</p>
+    </div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+  </section>
+
+  <section class="py-24 bg-slate-50">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <h2 class="text-5xl font-black text-slate-900 uppercase italic tracking-tighter text-center mb-16">Ranking <span class="text-blue-600">Wszech Czasów</span></h2>
+      <div class="bg-white rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead class="bg-slate-900 text-white uppercase text-[10px] tracking-[0.2em]">
+              <tr>
+                <th class="py-8 px-6 text-center w-24">Miejsce</th>
+                <th class="py-8 px-6">Zawodnik</th>
+                <th class="py-8 px-6 text-center">Złoto</th>
+                <th class="py-8 px-6 text-center">Srebro</th>
+                <th class="py-8 px-6 text-center">Brąz</th>
+                <th class="py-8 px-6 text-center bg-blue-600">Razem</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-50 text-sm">
+              {topAthletes.map((a) => (
+                <tr class="hover:bg-blue-50/50 transition-all group">
+                  <td class="py-6 px-6 text-center font-black text-slate-300 group-hover:text-blue-600 text-2xl italic">#{a.rank}</td>
+                  <td class="py-6 px-6">
+                    <div class="font-black text-slate-900 text-xl uppercase italic">{a.name}</div>
+                    <div class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">{a.disciplines}</div>
+                  </td>
+                  <td class="py-6 px-6 text-center font-bold text-slate-700">{a.gold || '-'}</td>
+                  <td class="py-6 px-6 text-center font-bold text-slate-700">{a.silver || '-'}</td>
+                  <td class="py-6 px-6 text-center font-bold text-slate-700">{a.bronze || '-'}</td>
+                  <td class="py-6 px-6 text-center font-black text-blue-600 text-2xl bg-blue-50/30">{a.total}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <h2 class="text-4xl font-black text-slate-900 uppercase italic mb-12 border-l-[12px] border-blue-600 pl-8 leading-none">Sukcesy <br/> Międzynarodowe</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {teamAchievements.map(ach => <AchievementCard ach={ach} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-slate-950 text-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="text-5xl font-black uppercase italic tracking-tighter">Kronika Sukcesów</h2>
+        <p class="text-slate-400 mt-4">Ostatnie zdobycze naszych reprezentantów.</p>
+      </div>
+      <div class="bg-slate-900/50 backdrop-blur-xl rounded-[3rem] border border-slate-800 overflow-hidden shadow-2xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-500 uppercase text-[10px] tracking-[0.3em] font-black">
+                <th class="py-8 px-8">Rok</th>
+                <th class="py-8 px-8">Zawodnik</th>
+                <th class="py-8 px-8 text-center">Medal</th>
+                <th class="py-8 px-8">Kategoria / Miejsce</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/50">
+              {recentMedals.map(m => (
+                <tr class="hover:bg-white/[0.02] transition-colors">
+                  <td class="py-6 px-8 font-black text-blue-500 text-lg italic">{m.year}</td>
+                  <td class="py-6 px-8 font-black text-white text-lg uppercase italic">{m.player}</td>
+                  <td class="py-6 px-8 text-center"><MedalBadge medal={m.medal} /></td>
+                  <td class="py-6 px-8">
+                    <div class="text-white font-bold text-sm">{m.discipline}</div>
+                    <div class="text-slate-500 text-xs uppercase tracking-wider">{m.category} | {m.place}</div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

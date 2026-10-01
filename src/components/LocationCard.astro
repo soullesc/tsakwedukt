@@ -1,0 +1,25 @@
+---
+// src/components/LocationCard.astro
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  isPrimary?: boolean;
+}
+
+const { title, description, icon, isPrimary = false } = Astro.props;
+
+const cardClasses = isPrimary 
+  ? "bg-blue-50/50 border-blue-100/50" 
+  : "bg-gray-50 border-gray-100";
+
+const iconClasses = isPrimary ? "text-blue-600" : "text-gray-700";
+---
+
+<div class={`${cardClasses} p-8 rounded-[2rem] border hover:-translate-y-1 transition-transform group`}>
+  <div class="bg-white w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition-transform">
+    <i class={`ti ti-${icon} text-3xl ${iconClasses}`}></i>
+  </div>
+  <h3 class="text-xl font-black uppercase text-gray-900 mb-2">{title}</h3>
+  <p class="text-sm text-gray-600 font-medium">{description}</p>
+</div>

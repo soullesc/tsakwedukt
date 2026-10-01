@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionInfo from '../components/SectionInfo.astro'; 
+
+const headCoachStats = [
+  { label: "Medali MP, Świata i Europy", value: "245", color: "text-blue-600" },
+  { label: "Lata doświadczenia", value: "45+", color: "text-gray-900" },
+  { label: "Wychowankowie", value: "Dozgonni", color: "text-blue-500" },
+];
+
+const protectors = ["Zawodniczka 4", "Zawodnik 3", "Zawodniczka 7", "Zawodniczka 8", "Zawodnik 1", "Zawodnik 16", "Zawodnik 2", "Zawodnik 5", "Zawodnik 10", "Zawodnik 17"];
+---
+
+<BaseLayout title="Trenerzy - TS Akwedukt">
+  <section class="relative py-24 bg-white overflow-hidden">
+    <div class="absolute top-10 -right-20 text-[15rem] font-black text-gray-50 uppercase italic leading-none pointer-events-none select-none">
+      MENTORS
+    </div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-8">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-600"></span>
+        </span>
+        <span class="text-blue-600 font-bold uppercase tracking-[0.2em] text-[10px]">Elitarna Kadra Trenerska</span>
+      </div>
+      <h1 class="text-6xl md:text-9xl font-black text-gray-900 leading-[0.8] uppercase tracking-tighter italic mb-8">
+        NASZA <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">KADRA.</span>
+      </h1>
+      <div class="max-w-xl h-1 bg-blue-600 mb-8"></div>
+      <p class="max-w-2xl text-xl md:text-2xl text-gray-500 font-medium leading-relaxed">
+        Nie tylko uczymy techniki. Budujemy charakter i mistrzowską mentalność pod okiem najlepszych w Polsce.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-slate-50 relative">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-12 lg:gap-24">
+        
+        <div class="w-full lg:w-1/3 lg:sticky lg:top-24 h-fit">
+          <div class="group relative">
+            <div class="absolute -inset-4 bg-gradient-to-tr from-blue-600 to-blue-400 rounded-[3rem] blur-2xl opacity-10 group-hover:opacity-20 transition duration-500"></div>
+            
+            <div class="relative bg-white rounded-[2.5rem] p-10 shadow-2xl shadow-blue-900/5 border border-white">
+              <div class="flex justify-between items-start mb-10">
+                <div>
+                  <h2 class="text-4xl font-black text-gray-900 uppercase tracking-tighter leading-none mb-4">Imię <br/> <span class="text-blue-600">Nazwisko</span></h2>
+                  <div class="inline-block px-3 py-1 bg-yellow-400 text-[10px] font-black uppercase tracking-widest rounded-md">
+                    Master Class Coach
+                  </div>
+                </div>
+                <div class="text-5xl font-black text-gray-100 italic">01</div>
+              </div>
+
+              <div class="grid grid-cols-1 gap-8 mb-10">
+                {headCoachStats.map(stat => (
+                  <div class="relative">
+                    <div class={`text-4xl font-black italic tracking-tighter ${stat.color}`}>{stat.value}</div>
+                    <div class="text-[10px] font-bold uppercase text-gray-400 tracking-widest mt-1">{stat.label}</div>
+                    <div class="absolute -left-4 top-0 w-1 h-full bg-blue-100 rounded-full"></div>
+                  </div>
+                ))}
+              </div>
+
+              <div class="p-6 bg-slate-900 rounded-3xl text-white relative overflow-hidden">
+                <i class="ti ti-quote absolute -right-4 -bottom-4 text-7xl text-white/10 italic"></i>
+                <p class="text-sm italic leading-relaxed relative z-10">
+                  "Pasja do sportu od 1949 roku. Moim celem nie jest wynik, a człowiek, który ten wynik osiąga."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-2/3">
+          <div class="space-y-16">
+            <div class="relative">
+              <h3 class="text-3xl font-black uppercase italic mb-8 flex items-center gap-4 text-gray-900">
+                <span class="w-12 h-px bg-blue-600"></span> O Legendzie
+              </h3>
+              <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                Absolwent AWF Gdańsk, nauczyciel akademicki i przede wszystkim fundament TS Akwedukt Kielce. Jego wiedza z zakresu lekkiej atletyki, triathlonu, judo i pływania stworzyła dziesiątki mistrzów.
+              </p>
+              
+              <div class="bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-sm">
+                 <h4 class="font-black text-gray-900 mb-6 uppercase text-xs tracking-[0.3em] flex items-center gap-3">
+                   <i class="ti ti-users-group text-blue-600 text-xl"></i> Elitarne Grono Podopiecznych
+                 </h4>
+                 <div class="flex flex-wrap gap-3">
+                   {protectors.map(p => (
+                     <span class="bg-gray-50 hover:bg-blue-600 hover:text-white transition-colors duration-300 border border-gray-100 text-gray-600 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-tight">
+                       {p}
+                     </span>
+                   ))}
+                 </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="group bg-slate-900 p-10 rounded-[2.5rem] transition-all duration-500 hover:-translate-y-2">
+                <div class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/40">
+                  <i class="ti ti-target-arrow text-white text-2xl"></i>
+                </div>
+                <h4 class="text-xl font-black uppercase text-white mb-6 italic">Doświadczenie Trenerskie</h4>
+                <div class="space-y-6">
+                  <div class="border-l border-white/10 pl-4">
+                    <div class="text-blue-400 font-bold text-xs uppercase mb-1">1995 - Dziś</div>
+                    <div class="text-white text-sm font-bold">Główny Strateg TS Akwedukt</div>
+                  </div>
+                  <div class="border-l border-white/10 pl-4">
+                    <div class="text-blue-400 font-bold text-xs uppercase mb-1">Piłka Nożna</div>
+                    <div class="text-white text-sm font-bold">Korona Kielce (Ekstraklasa)</div>
+                  </div>
+                  <div class="border-l border-white/10 pl-4">
+                    <div class="text-blue-400 font-bold text-xs uppercase mb-1">Piłka Ręczna</div>
+                    <div class="text-white text-sm font-bold">Iskra Kielce (VIVE)</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-sm transition-all duration-500 hover:-translate-y-2">
+                <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
+                  <i class="ti ti-award text-gray-900 text-2xl"></i>
+                </div>
+                <h4 class="text-xl font-black uppercase text-gray-900 mb-6 italic">Ordery i Odznaczenia</h4>
+                <ul class="space-y-4">
+                  {["Medal Komisji Edukacji Narodowej", "Złota Odznaka PZTri", "Złota Odznaka PZLA", "Zasłużony Działacz Kultury Fizycznej"].map(award => (
+                    <li class="flex items-center gap-3 text-xs font-bold text-gray-500 uppercase tracking-tight">
+                      <i class="ti ti-circle-check-filled text-blue-600"></i> {award}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white relative overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="relative group">
+        <div class="absolute inset-0 bg-blue-600 rounded-[4rem] rotate-1 group-hover:rotate-0 transition-transform duration-700"></div>
+        
+        <div class="relative bg-slate-900 rounded-[4rem] p-10 md:p-20 overflow-hidden flex flex-col lg:flex-row items-center gap-16 transition-transform duration-700">
+          <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="absolute inset-0" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 40px 40px;"></div>
+          </div>
+
+          <div class="w-full lg:w-2/3 relative z-10">
+            <div class="flex items-center gap-4 mb-8">
+              <span class="w-16 h-1 bg-blue-500"></span>
+              <span class="text-blue-400 font-black uppercase tracking-[0.3em] text-[10px]">Coach od 2008</span>
+            </div>
+            <h2 class="text-5xl md:text-7xl font-black text-white uppercase italic leading-[0.9] mb-8">
+              Imię <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">Nazwisko</span>
+            </h2>
+            <p class="text-lg md:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl">
+              Specjalista od szlifowania młodych talentów. Absolwent Warszawskiego AWF-u, który przekłada medalowe doświadczenie z triathlonu na sukcesy swoich podopiecznych.
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10 hover:border-blue-500 transition-colors">
+                <i class="ti ti-chart-bar text-blue-400 text-3xl mb-4"></i>
+                <h5 class="text-white font-black uppercase text-xs mb-2 tracking-widest">Kwalifikacje</h5>
+                <p class="text-slate-400 text-sm">Instruktor Triathlonu, Pływania i Fitness.</p>
+              </div>
+              <div class="bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10 hover:border-blue-500 transition-colors">
+                <i class="ti ti-target-arrow text-blue-400 text-3xl mb-4"></i>
+                <h5 class="text-white font-black uppercase text-xs mb-2 tracking-widest">Główny Focus</h5>
+                <p class="text-slate-400 text-sm">Szkolenie młodzieży i przygotowanie motoryczne.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full lg:w-1/3 relative">
+            <div class="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
+              <div class="absolute inset-0 bg-blue-600 rounded-full animate-pulse opacity-20"></div>
+              <div class="absolute inset-4 border-2 border-dashed border-blue-500/30 rounded-full"></div>
+              <div class="absolute inset-8 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full shadow-2xl flex items-center justify-center border-4 border-slate-900 overflow-hidden">
+                 <i class="ti ti-bike text-white text-8xl md:text-9xl opacity-20 absolute -right-4 -bottom-4 rotate-12"></i>
+                 <i class="ti ti-run text-white text-8xl md:text-9xl"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pb-24">
+    <SectionInfo 
+      title="Chcesz trenować pod okiem"
+      blueTitle="MISTRZÓW?"
+      description="Nie czekaj na lepszy moment. Dołącz do TS Akwedukt i zacznij pisać swoją własną historię sukcesu już dzisiaj."
+      buttonText="Zacznij treningi"
+      buttonHref="/kontakt"
+    />
+  </div>
+</BaseLayout>
+
+<style>
+  h1, h2, h3, h4 {
+    letter-spacing: -0.05em;
+  }
+
+  .sticky {
+    transition: all 0.3s ease;
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+// src/components/ContactForm.astro
+---
+
+<form action="#" method="POST" class="space-y-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <label class="block">
+      <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2 block">Imię i Nazwisko</span>
+      <input 
+        type="text" 
+        name="name" 
+        required 
+        placeholder="Jan Kowalski" 
+        class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm font-medium text-gray-900 placeholder-gray-400"
+      >
+    </label>
+    
+    <label class="block">
+      <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2 block">Twój Email</span>
+      <input 
+        type="email" 
+        name="email" 
+        required 
+        placeholder="jan@example.com" 
+        class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm font-medium text-gray-900 placeholder-gray-400"
+      >
+    </label>
+  </div>
+
+  <label class="block relative">
+    <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2 block">Temat wiadomości</span>
+    <select name="subject" class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm font-medium text-gray-900 appearance-none cursor-pointer">
+      <option>Chcę dołączyć do klubu</option>
+      <option>Współpraca / Sponsoring</option>
+      <option>Zgłoszenie wyniku zawodnika</option>
+      <option>Inne pytanie</option>
+    </select>
+    <div class="absolute right-5 top-[38px] pointer-events-none text-gray-400">
+      <i class="ti ti-chevron-down text-xl"></i>
+    </div>
+  </label>
+
+  <label class="block">
+    <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2 block">Treść wiadomości</span>
+    <textarea 
+      name="message" 
+      required 
+      rows="4" 
+      placeholder="Napisz, w czym możemy Ci pomóc..." 
+      class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm font-medium text-gray-900 placeholder-gray-400 resize-none"
+    ></textarea>
+  </label>
+
+  <button type="submit" class="w-full group relative inline-flex items-center justify-center gap-3 bg-blue-600 text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-blue-700 transition-all duration-300 hover:-translate-y-1 shadow-xl shadow-blue-900/20 mt-4">
+    Wyślij wiadomość
+    <i class="ti ti-send text-xl transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+  </button>
+</form>

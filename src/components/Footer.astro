@@ -1,0 +1,65 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-gray-900 text-gray-300 pt-16 pb-8 border-t border-gray-800 mt-auto">
+  <div class="container mx-auto px-4 max-w-7xl">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
+      
+      <div class="space-y-4">
+        <a href="/" class="inline-block">
+          <span class="text-2xl font-black text-white tracking-tight">
+            TS AKWEDUKT <span class="text-blue-500">KIELCE</span>
+          </span>
+        </a>
+        <p class="text-sm text-gray-400 leading-relaxed max-w-sm">
+          Świętokrzyski klub triathlonowy. Łączymy pasję do pływania, kolarstwa i biegania. Dołącz do nas i trenuj pod okiem profesjonalistów!
+        </p>
+        <div class="flex gap-4 pt-2">
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition-colors" aria-label="Facebook">
+            <i class="ti ti-brand-facebook text-xl"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-pink-600 hover:text-white transition-colors" aria-label="Instagram">
+            <i class="ti ti-brand-instagram text-xl"></i>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Na skróty</h3>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="/historia" class="hover:text-blue-500 hover:translate-x-1 transition-transform inline-block">Historia klubu</a></li>
+          <li><a href="/wyniki" class="hover:text-blue-500 hover:translate-x-1 transition-transform inline-block">Wyniki zawodników</a></li>
+          <li><a href="/galeria" class="hover:text-blue-500 hover:translate-x-1 transition-transform inline-block">Galeria zdjęć</a></li>
+          <li><a href="/trenerzy" class="hover:text-blue-500 hover:translate-x-1 transition-transform inline-block">Nasi trenerzy</a></li>
+          <li><a href="/kontakt" class="hover:text-blue-500 hover:translate-x-1 transition-transform inline-block">Kontakt</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">O projekcie</h3>
+        <p class="text-sm text-gray-400 leading-relaxed max-w-sm">
+          Wersja portfolio strony klubu. Dane kontaktowe i informacje prawne zostały usunięte.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="pt-8 border-t border-gray-800 flex flex-col lg:flex-row items-center justify-between gap-6 text-xs text-gray-500 font-medium">
+      
+      <div class="flex flex-col md:flex-row items-center gap-2 md:gap-6 text-center md:text-left">
+        <p>&copy; {currentYear} TS Akwedukt Kielce. Wszelkie prawa zastrzeżone.</p>
+        
+        <p class="flex items-center gap-1.5 text-gray-400">
+          Created with <i class="ti ti-heart-filled text-red-500 text-sm animate-pulse"></i> by 
+          <a href="https://www.pepix.pl" target="_blank" class="font-bold text-gray-300 hover:text-blue-500 transition-colors">
+            pepix
+          </a>
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</footer>

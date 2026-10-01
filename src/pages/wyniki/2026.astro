@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsCard from '../../components/NewsCard.astro';
+
+interface NewsModule {
+  frontmatter: {
+    title: string;
+    date: string;
+    author: string;
+    excerpt: string;
+    image: string;
+  };
+  url: string;
+}
+
+const newsFiles = import.meta.glob<NewsModule>('./news/*.md', { eager: true });
+const allNews = Object.values(newsFiles);
+
+const news2026 = allNews
+  .filter(item => new Date(item.frontmatter.date).getFullYear() === 2026)
+  .sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+---
+
+<BaseLayout title="Sezon 2026 - TS Akwedukt Kielce">
+  
+<section class="relative w-full h-[400px] rounded-3xl overflow-hidden mb-16 shadow-lg bg-gray-900 group flex flex-col justify-center text-center">
+    
+    <img 
+      src="/images/index-banner.jpg" 
+      alt="Sezon 2026" 
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+    />
+    
+    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-gray-900/40"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-6">
+      <span class="inline-block py-1.5 px-4 rounded-full bg-blue-600/80 border border-blue-400/30 text-white text-xs font-bold tracking-widest uppercase mb-6 backdrop-blur-md shadow-sm">
+        Podsumowanie i Wyniki
+      </span>
+      <h1 class="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight uppercase italic drop-shadow-lg">
+        Sezon 2026
+      </h1>
+      <p class="text-lg md:text-xl text-gray-200 font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+        Śledź nasze zmagania, wyniki i najważniejsze wydarzenia w obecnym sezonie startowym. Akwedukt Kielce w drodze po kolejne medale!
+      </p>
+    </div>
+  </section>
+
+  <section class="mb-16">
+    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-8">
+      <h2 class="text-2xl md:text-3xl font-black uppercase italic tracking-tighter text-gray-900 flex items-center gap-3">
+        <i class="ti ti-calendar-event text-blue-600 text-3xl"></i> Najważniejsze Starty
+      </h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 relative overflow-hidden group hover:-translate-y-1">
+        <div class="absolute top-0 left-0 w-1.5 h-full bg-blue-500 group-hover:bg-blue-600 transition-colors"></div>
+        <div class="text-xs font-bold text-blue-600 mb-2 uppercase tracking-wider">Maj 2026</div>
+        <h3 class="text-xl font-black text-gray-900 mb-2 uppercase tracking-tight">Puchar Polski w Triathlonie</h3>
+        <p class="text-gray-500 text-sm font-medium flex items-center gap-1"><i class="ti ti-map-pin"></i> Rzeszów</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 relative overflow-hidden group hover:-translate-y-1">
+        <div class="absolute top-0 left-0 w-1.5 h-full bg-orange-500 group-hover:bg-orange-600 transition-colors"></div>
+        <div class="text-xs font-bold text-orange-500 mb-2 uppercase tracking-wider">Czerwiec 2026</div>
+        <h3 class="text-xl font-black text-gray-900 mb-2 uppercase tracking-tight">Mistrzostwa Polski Juniorów</h3>
+        <p class="text-gray-500 text-sm font-medium flex items-center gap-1"><i class="ti ti-map-pin"></i> Susz</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 relative overflow-hidden group hover:-translate-y-1">
+        <div class="absolute top-0 left-0 w-1.5 h-full bg-green-500 group-hover:bg-green-600 transition-colors"></div>
+        <div class="text-xs font-bold text-green-600 mb-2 uppercase tracking-wider">Sierpień 2026</div>
+        <h3 class="text-xl font-black text-gray-900 mb-2 uppercase tracking-tight">Zawody Ironman 70.3</h3>
+        <p class="text-gray-500 text-sm font-medium flex items-center gap-1"><i class="ti ti-map-pin"></i> Gdynia</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-8">
+      <h2 class="text-2xl md:text-3xl font-black uppercase italic tracking-tighter text-gray-900 flex items-center gap-3">
+        <i class="ti ti-news text-blue-600 text-3xl"></i> Relacje z sezonu
+      </h2>
+    </div>
+    
+    <div class="space-y-6">
+      {news2026.length > 0 ? (
+        news2026.map((newsItem) => (
+          <NewsCard 
+            title={newsItem.frontmatter.title}
+            date={new Date(newsItem.frontmatter.date)}
+            author={newsItem.frontmatter.author}
+            excerpt={newsItem.frontmatter.excerpt}
+            image={newsItem.frontmatter.image}
+            url={newsItem.url || '#'} 
+          />
+        ))
+      ) : (
+        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-10 text-center">
+          <i class="ti ti-notebook text-4xl text-gray-300 mb-3 block"></i>
+          <p class="text-gray-500 font-medium">Brak wiadomości i relacji z tego sezonu.</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+</BaseLayout>

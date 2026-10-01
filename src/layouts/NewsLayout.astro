@@ -1,0 +1,114 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const { frontmatter } = Astro.props;
+
+const gallery = frontmatter.gallery || [];
+const hasGallery = gallery.length > 1;
+
+const formattedDate = new Date(frontmatter.date).toLocaleDateString('pl-PL', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric'
+});
+---
+
+<BaseLayout title={`${frontmatter.title} - TS Akwedukt`}>
+  <div class="max-w-4xl mx-auto py-10 px-4">
+
+    {hasGallery ? (
+      <div class="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden mb-8 group bg-gray-100 shadow-md slider-container">
+        
+        {gallery.map((img: string, index: number) => (
+          <img 
+            src={img} 
+            alt={`${frontmatter.title} - zdjęcie ${index + 1}`} 
+            class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 slide-img ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`} 
+            data-index={index}
+          />
+        ))}
+
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
+
+        <button class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-gray-800 w-10 h-10 flex items-center justify-center rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all prev-btn" aria-label="Poprzednie zdjęcie">
+          <i class="ti ti-chevron-left text-2xl"></i>
+        </button>
+
+        <button class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-gray-800 w-10 h-10 flex items-center justify-center rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all next-btn" aria-label="Następne zdjęcie">
+          <i class="ti ti-chevron-right text-2xl"></i>
+        </button>
+
+
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2 slider-dots">
+          {gallery.map((_: string, index: number) => (
+            <div class={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${index === 0 ? 'bg-white' : 'bg-white/40'}`}></div>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <img 
+        src={frontmatter.image} 
+        alt={frontmatter.title} 
+        class="w-full h-[400px] md:h-[500px] object-cover rounded-2xl mb-8 shadow-md" 
+      />
+    )}
+
+    <h1 class="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-gray-900 mb-6 leading-tight">
+      {frontmatter.title}
+    </h1>
+    
+    <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-10 font-medium border-b border-gray-200 pb-6">
+      <span class="bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg border border-blue-100 flex items-center gap-1.5">
+        <i class="ti ti-user text-base"></i> {frontmatter.author}
+      </span>
+      <span class="flex items-center gap-1.5">
+        <i class="ti ti-calendar text-base"></i> {formattedDate}
+      </span>
+    </div>
+    
+    <article class="prose prose-lg max-w-none text-gray-700 prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-img:rounded-xl">
+      <slot />
+    </article>
+    
+  </div>
+</BaseLayout>
+
+<script>
+  function initSliders() {
+    const containers = document.querySelectorAll('.slider-container');
+    
+    containers.forEach(container => {
+      const slides = container.querySelectorAll('.slide-img');
+      const dots = container.querySelectorAll('.slider-dots div');
+      const prevBtn = container.querySelector('.prev-btn');
+      const nextBtn = container.querySelector('.next-btn');
+      
+      if (!slides.length) return;
+
+      let currentIndex = 0;
+
+      function updateSlider(newIndex: number) {
+        slides[currentIndex].classList.remove('opacity-100', 'z-10');
+        slides[currentIndex].classList.add('opacity-0', 'z-0');
+        dots[currentIndex].classList.remove('bg-white');
+        dots[currentIndex].classList.add('bg-white/40');
+
+        currentIndex = newIndex;
+        if (currentIndex < 0) currentIndex = slides.length - 1;
+        if (currentIndex >= slides.length) currentIndex = 0;
+
+        slides[currentIndex].classList.remove('opacity-0', 'z-0');
+        slides[currentIndex].classList.add('opacity-100', 'z-10');
+        dots[currentIndex].classList.remove('bg-white/40');
+        dots[currentIndex].classList.add('bg-white');
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', () => updateSlider(currentIndex - 1));
+      if (nextBtn) nextBtn.addEventListener('click', () => updateSlider(currentIndex + 1));
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initSliders);
+
+  document.addEventListener('astro:page-load', initSliders);
+</script>

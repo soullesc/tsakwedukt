@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const recentRaces = [
+  {
+    name: "Mistrzostwa Polski w Triathlonie",
+    location: "Susz",
+    date: "Czerwiec 2025",
+    results: [
+      { name: "Zawodnik 2", pos: "1. miejsce (PRO)", time: "01:55:32", highlight: true },
+      { name: "Zawodnik 12", pos: "4. miejsce (AG)", time: "02:05:15", highlight: false }
+    ]
+  },
+  {
+    name: "Ironman 70.3",
+    location: "Warszawa",
+    date: "Wrzesień 2025",
+    results: [
+      { name: "Zawodnik 11", pos: "2. miejsce (M25)", time: "04:15:10", highlight: true },
+      { name: "Zawodniczka 13", pos: "1. miejsce (K30)", time: "04:45:22", highlight: true }
+    ]
+  },
+  {
+    name: "Duathlon",
+    location: "Raduszyn",
+    date: "Kwiecień 2025",
+    results: [
+      { name: "Zawodnik 14", pos: "1. miejsce (U23)", time: "00:58:40", highlight: true }
+    ]
+  }
+];
+
+const clubRecords = [
+  { distance: "Ironman", length: "226 km", time: "08:51:33", athlete: "Najlepszy wynik klubu", color: "bg-blue-600 text-white" },
+  { distance: "1/2 Ironman", length: "113 km", time: "03:59:12", athlete: "Zawodnik 1", color: "bg-white text-gray-900 border border-gray-100" },
+  { distance: "Olimpijka", length: "51.5 km", time: "01:52:45", athlete: "Zawodnik 2", color: "bg-white text-gray-900 border border-gray-100" },
+];
+---
+
+<BaseLayout title="Wyniki - TS Akwedukt">
+  <section class="py-12 px-4">
+    <div class="container mx-auto max-w-6xl bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3rem] p-12 md:p-20 relative overflow-hidden shadow-2xl">
+      <div class="relative z-10 text-center">
+        <span class="bg-white/10 text-white backdrop-blur-md px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest inline-block mb-8 border border-white/20">
+          Sezon Startowy
+        </span>
+        <h1 class="text-5xl md:text-7xl font-black text-white leading-none uppercase tracking-tighter mb-6 italic">
+          Nasze <span class="text-blue-400">Wyniki.</span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-xl text-gray-300 font-medium leading-relaxed">
+          Od lokalnych zawodów po areny międzynarodowe. Sprawdź czasy i osiągnięcia zawodników TS Akwedukt w najnowszych startach.
+        </p>
+      </div>
+      <div class="absolute -top-20 -left-20 w-96 h-96 bg-blue-500/30 rounded-full blur-[100px]"></div>
+      <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-[100px]"></div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50/50">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="flex items-center gap-4 mb-10">
+        <h2 class="text-3xl font-black text-gray-900 uppercase italic tracking-tighter">Rekordy <span class="text-blue-600">Klubu</span></h2>
+        <div class="h-1 flex-1 bg-gray-100 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {clubRecords.map(record => (
+          <div class={`rounded-[2.5rem] p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ${record.color}`}>
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <h3 class="font-black text-2xl uppercase tracking-tight">{record.distance}</h3>
+                <span class="text-sm opacity-70 font-bold tracking-widest uppercase">{record.length}</span>
+              </div>
+              <div class="bg-black/10 w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              </div>
+            </div>
+            <div class="text-5xl font-black tracking-tighter mb-2">{record.time}</div>
+            <div class="font-medium opacity-90">{record.athlete}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-black text-gray-900 uppercase italic tracking-tighter">Ostatnie <span class="text-blue-600">Starty</span></h2>
+      </div>
+
+      <div class="space-y-8">
+        {recentRaces.map(race => (
+          <div class="bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-10 shadow-lg shadow-gray-200/40 relative overflow-hidden group">
+            
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 pb-6 border-b border-gray-50">
+              <div>
+                <h3 class="text-2xl font-black text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">{race.name}</h3>
+                <div class="flex items-center gap-3 text-sm font-bold text-gray-400 uppercase tracking-wider">
+                  <span class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg> {race.location}</span>
+                  <span>•</span>
+                  <span>{race.date}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              {race.results.map(result => (
+                <div class={`flex flex-col sm:flex-row justify-between items-start sm:items-center p-5 rounded-2xl transition-colors ${result.highlight ? 'bg-blue-50/50 border border-blue-100/50' : 'bg-gray-50/50 border border-transparent hover:bg-gray-50'}`}>
+                  <div class="mb-2 sm:mb-0">
+                    <div class="font-bold text-gray-900 text-lg">{result.name}</div>
+                    <div class={`text-sm font-bold uppercase tracking-widest mt-1 ${result.highlight ? 'text-blue-600' : 'text-gray-500'}`}>
+                      {result.pos}
+                    </div>
+                  </div>
+                  <div class="text-2xl font-black text-gray-900 tracking-tighter bg-white px-4 py-2 rounded-xl shadow-sm border border-gray-100/50">
+                    {result.time}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div class="absolute -right-20 -top-20 w-64 h-64 bg-blue-50 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+          </div>
+        ))}
+      </div>
+      
+    </div>
+  </section>
+
+  <section class="py-16 px-4">
+    <div class="container mx-auto max-w-4xl bg-blue-50 rounded-[3rem] p-12 text-center border border-blue-100">
+      <h2 class="text-3xl font-black text-gray-900 uppercase italic tracking-tighter mb-4">Brakuje Twojego wyniku?</h2>
+      <p class="text-gray-600 mb-8 font-medium">Jeśli startowałeś w barwach klubu, a Twojego czasu nie ma na liście — daj nam znać!</p>
+      <a href="/kontakt" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all inline-block shadow-lg shadow-blue-900/20">
+        Zgłoś wynik
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const board = [
+  { name: "Leszek Wrona", role: "Prezes" },
+  { name: "Kazimierz Grabda", role: "V-ce Prezes" },
+  { name: "Andrzej Szołowski", role: "V-ce Prezes" },
+  { name: "Leszek Siuda", role: "Członek zarządu" },
+  { name: "Marek Kalwat", role: "Członek zarządu" },
+  { name: "Marzena Maćkowska", role: "Przewodnicząca Komisji Rewizyjnej" },
+  { name: "Paweł Wiśniewski", role: "Członek Komisji Rewizyjnej" },
+  { name: "Andrzej Suchojad", role: "Członek Komisji Rewizyjnej" },
+];
+
+const stats = [
+  { label: "Pływanie", value: "600", unit: "km", color: "text-blue-500" },
+  { label: "Rower", value: "12 000", unit: "km", color: "text-gray-700" },
+  { label: "Bieganie", value: "5 000", unit: "km", color: "text-blue-600" },
+];
+---
+
+<BaseLayout title="Historia - TS Akwedukt">
+  <section class="relative py-16 bg-gray-900 text-white overflow-hidden">
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="text-blue-500 font-bold uppercase tracking-widest text-sm mb-4 block">Z Kielc do Sanoka w</span>
+        <h1 class="text-7xl md:text-8xl font-black leading-none mb-6 italic tracking-tighter text-blue-500">
+          8h 51m 33s
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 font-medium leading-relaxed mb-8">
+          3,8 km płynąc, 180 km na rowerze i 42,195 km biegiem. Razem <span class="text-white font-bold border-b-2 border-blue-500">225,995 km</span>. Najlepszy zawodnik naszego klubu pokonuje ten dystans z niesamowitym czasem.
+        </p>
+      </div>
+    </div>
+    <div class="absolute top-0 right-0 w-full h-full bg-blue-600/10 blur-[120px] rounded-full pointer-events-none"></div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto prose prose-lg prose-blue prose-p:text-gray-600 prose-p:leading-relaxed">
+        <h2 class="text-4xl font-black text-gray-900 uppercase italic tracking-tighter mb-8 text-center">
+          Trzech facetów i <span class="text-blue-600">jedna wizja</span>
+        </h2>
+        <p>
+          Początki klubu przypominały tę anegdotyczną opowiastkę, że spotkało się trzech amerykańskich oficerów, z których jeden był dobry w pływaniu, drugi w jeździe na rowerze, a trzeci dobrze biegał itd. — na pewno znacie, słyszycie ją przed każdymi zawodami.
+        </p>
+        <p>
+          W Kielcach też spotkało się trzech facetów. W odróżnieniu od tamtych, zajadłych cywilów, z których jeden był trenerem, któremu znudził się stadion, drugim lekkoatleta, któremu się przejadło bieganie w kółko i trzeci, który był entuzjastą sportu.
+        </p>
+        <p>
+          Tym sposobem <strong>Andrzej Szołowski</strong> zaczął trenować <strong>Marka Kalwata</strong> przy finansowym wsparciu <strong>Leszka Wrony</strong>, co w <strong>1995 roku</strong> zaowocowało powstaniem Towarzystwa Sportowego „Akwedukt”.
+        </p>
+        
+        <div class="my-12 p-8 bg-blue-50 rounded-3xl border-l-4 border-blue-600 shadow-sm">
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Skąd ta nazwa?</h3>
+          <p class="text-gray-700 m-0">
+            Nazwę starożytną i pięknie współbrzmiącą z równie starożytnie brzmiącymi: <em>triathlon</em> i <em>duathlon</em>, przyjęto oczywiście od nazwy sponsora: <strong>Przedsiębiorstwo Projektowania i Realizacji Obiektów Inżynierii Ochrony Środowiska „AKWEDUKT” Sp. z o.o.</strong>, które z dobrym rezultatem buduje wodociągi i oczyszczalnie ścieków w całym kraju.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50 border-y border-gray-100">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-black text-gray-900 uppercase italic mb-12">
+        Rok z życia seniora
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        {stats.map(stat => (
+          <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform">
+            <div class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">{stat.label}</div>
+            <div class={`text-5xl font-black ${stat.color} tracking-tighter mb-1`}>
+              {stat.value}
+            </div>
+            <div class="text-gray-500 font-medium">{stat.unit} rocznie</div>
+          </div>
+        ))}
+      </div>
+      <p class="mt-12 text-gray-600 max-w-2xl mx-auto">
+        Obecnie w klubie trenuje 20 zawodniczek i zawodników we wszystkich kategoriach wiekowych. Aby być na topie, trzeba wylać litry potu.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-3xl font-black text-gray-900 uppercase italic tracking-tighter mb-10 text-center">
+        Zarząd Towarzystwa
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+        {board.map(member => (
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 border-b border-gray-100 group hover:bg-gray-50 rounded-xl transition-colors">
+            <span class="font-bold text-gray-900 text-lg">{member.name}</span>
+            <span class="text-sm text-blue-600 font-semibold uppercase tracking-wider">{member.role}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container mx-auto px-4 mb-16 mt-8">
+    <div class="bg-blue-600 rounded-[2rem] p-12 text-center relative overflow-hidden shadow-xl">
+      <div class="relative z-10">
+        <h2 class="text-4xl font-black text-white uppercase tracking-tighter mb-4 italic">
+          Chcesz zdobyć tytuł Ironmana?
+        </h2>
+        <p class="text-blue-100 text-lg max-w-xl mx-auto mb-8">
+          Podoba Ci się? Chcesz się sprawdzić i przełamać własne granice? Wystartuj w zawodach i dołącz do najlepszych.
+        </p>
+        <a href="/kontakt" class="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-black uppercase tracking-widest text-sm hover:bg-gray-100 transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-blue-900/20">
+          Zacznij trenować z nami
+        </a>
+      </div>
+      <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+    </div>
+  </section>
+</BaseLayout>

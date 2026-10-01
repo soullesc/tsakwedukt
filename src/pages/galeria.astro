@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Wersja portfolio: zdjęcia zastąpione kafelkami zastępczymi
+const tiles = [
+  { title: "Trening pływacki", category: "Treningi", icon: "ti-swimming", aspect: "aspect-[4/5]", gradient: "from-blue-600 to-cyan-400" },
+  { title: "Start sezonu", category: "Zawody", icon: "ti-flag", aspect: "aspect-[4/3]", gradient: "from-slate-800 to-slate-600" },
+  { title: "Trasa rowerowa", category: "Treningi", icon: "ti-bike", aspect: "aspect-square", gradient: "from-orange-500 to-amber-300" },
+  { title: "Finisz", category: "Zawody", icon: "ti-run", aspect: "aspect-[4/3]", gradient: "from-green-600 to-emerald-400" },
+  { title: "Strefa zmian", category: "Zawody", icon: "ti-clock-hour-4", aspect: "aspect-[4/5]", gradient: "from-blue-800 to-blue-500" },
+  { title: "Podium", category: "Zawody", icon: "ti-trophy", aspect: "aspect-square", gradient: "from-yellow-500 to-orange-400" },
+  { title: "Obóz treningowy", category: "Treningi", icon: "ti-tent", aspect: "aspect-[4/3]", gradient: "from-teal-600 to-cyan-400" },
+  { title: "Bieg terenowy", category: "Treningi", icon: "ti-trekking", aspect: "aspect-[4/5]", gradient: "from-lime-600 to-green-400" },
+  { title: "Drużyna", category: "Wydarzenia", icon: "ti-users-group", aspect: "aspect-square", gradient: "from-indigo-600 to-blue-400" },
+];
+---
+
+<BaseLayout title="Galeria - TS Akwedukt">
+  <section class="py-16 bg-white overflow-hidden">
+    <div class="container mx-auto px-4 text-center max-w-4xl">
+      <span class="text-blue-600 font-bold uppercase tracking-widest text-xs mb-4 block">Złapane w kadrze</span>
+      <h1 class="text-5xl md:text-7xl font-black text-gray-900 leading-none uppercase tracking-tighter mb-6 italic">
+        Nasza <span class="text-blue-600">Galeria.</span>
+      </h1>
+      <p class="text-lg text-gray-500 font-medium mb-10">
+        Pot, łzy radości, epickie finisze i codzienna ciężka praca.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-10 bg-gray-50/50 pb-24">
+    <div class="container mx-auto px-4">
+      <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+
+        {tiles.map(tile => (
+          <div class={`photo-card relative group break-inside-avoid rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 bg-gradient-to-br ${tile.gradient} ${tile.aspect}`}>
+            <div class="absolute inset-0 flex items-center justify-center pb-16">
+              <i class={`ti ${tile.icon} text-white/30 text-8xl transition-transform duration-700 group-hover:scale-110`}></i>
+            </div>
+
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-transparent to-transparent"></div>
+
+            <div class="absolute bottom-0 left-0 p-8 z-10">
+              <span class="bg-white/20 backdrop-blur-sm text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-lg mb-2 inline-block">
+                {tile.category}
+              </span>
+              <h3 class="text-xl font-black text-white leading-tight uppercase tracking-tighter drop-shadow-md">
+                {tile.title}
+              </h3>
+            </div>
+          </div>
+        ))}
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .photo-card {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+</style>

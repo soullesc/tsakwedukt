@@ -1,0 +1,19 @@
+---
+interface Props {
+  medal: 'Złoto' | 'Srebro' | 'Brąz' | string; 
+}
+
+const { medal } = Astro.props;
+
+const styles: Record<string, string> = {
+  'Złoto': 'bg-yellow-500/10 border-yellow-500/30 text-yellow-500',
+  'Srebro': 'bg-slate-400/10 border-slate-400/30 text-slate-300',
+  'Brąz': 'bg-orange-900/10 border-orange-700/30 text-orange-600'
+};
+
+const activeStyle = styles[medal] || styles['Brąz'];
+---
+
+<span class={`px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest border ${activeStyle}`}>
+  {medal}
+</span>
